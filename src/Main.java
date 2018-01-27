@@ -44,7 +44,7 @@ public class Main {
 					filePath.setText(selFile.toString());
 					Scanner sc = new Scanner(new FileInputStream(selFile.getPath()));
 					sc.useDelimiter("\\A");
-					inputField.setText(sc.next());
+					inputField.setText(sc.hasNext() ? sc.next() : "");
 					sc.close();
 					}catch(Exception ex) {
 						ex.printStackTrace();
