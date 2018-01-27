@@ -3,6 +3,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -10,11 +11,9 @@ import javax.swing.SwingUtilities;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.awt.FlowLayout;
 
 public class Main {
 	private static JTextArea inputField;
@@ -26,10 +25,16 @@ public class Main {
 		frame.getContentPane().setLayout(null);		
 		frame.setLocation(500, 300);
 		
-		inputField = new JTextArea();
-		inputField.setBounds(57, 56, 395, 286);
-		frame.getContentPane().add(inputField);
+		inputField = new JTextArea();		
 		inputField.setColumns(10);
+		inputField.setEnabled(false);
+		inputField.setDisabledTextColor(Color.BLACK);
+		inputField.setWrapStyleWord(true);
+		inputField.setLineWrap(true);
+		inputField.setCaretPosition(inputField.getDocument().getLength());
+		JScrollPane scroll = new JScrollPane(inputField);
+		scroll.setBounds(57, 56, 395, 286);
+		frame.getContentPane().add(scroll);
 				
 		JButton fileImport = new JButton("Import...");
 		fileImport.setBounds(57, 18, 97, 25);
@@ -61,10 +66,16 @@ public class Main {
 		JButton sentenceSelect = new JButton("Sentence Mode");
 		sentenceSelect.setBounds(57, 355, 165, 25);
 		frame.getContentPane().add(sentenceSelect);
+		sentenceSelect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				inputField.setEnabled(false);				
+			}
+		});
 		
 		JButton editMode = new JButton("Edit Mode");
 		editMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				inputField.setEnabled(true);				
 			}
 		});
 		editMode.setBounds(287, 355, 165, 25);
