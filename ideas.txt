@@ -1,4 +1,0 @@
--runs interpreter on period
-    -2 second grace period
-
--input text into large frame, automatically highlights text as refresh
