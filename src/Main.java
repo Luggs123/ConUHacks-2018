@@ -3,6 +3,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
@@ -16,7 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 
 public class Main {
-	private static JTextField inputField;
+	private static JTextArea inputField;
 	private static JTextField filePath;
 	private static void showWindow() {
 		JFrame frame = new JFrame("Mood Interpreter");
@@ -25,7 +26,7 @@ public class Main {
 		frame.getContentPane().setLayout(null);		
 		frame.setLocation(500, 300);
 		
-		inputField = new JTextField();
+		inputField = new JTextArea();
 		inputField.setBounds(57, 56, 395, 286);
 		frame.getContentPane().add(inputField);
 		inputField.setColumns(10);
