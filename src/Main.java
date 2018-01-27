@@ -7,6 +7,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Highlighter;
+import javax.swing.text.Highlighter.HighlightPainter;
 
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -18,7 +22,7 @@ import java.awt.event.ActionEvent;
 public class Main {
 	private static JTextArea inputField;
 	private static JTextField filePath;
-	private static void showWindow() {
+	private static void showWindow() throws BadLocationException {
 		JFrame frame = new JFrame("Mood Interpreter");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(900, 450);
@@ -32,6 +36,12 @@ public class Main {
 		inputField.setWrapStyleWord(true);
 		inputField.setLineWrap(true);
 		inputField.setCaretPosition(inputField.getDocument().getLength());
+		
+		Highlighter highlighter = inputField.getHighlighter();
+        HighlightPainter painter = 
+                 new DefaultHighlighter.DefaultHighlightPainter(Color.pink);
+		
+		
 		JScrollPane scroll = new JScrollPane(inputField);
 		scroll.setBounds(57, 56, 395, 286);
 		frame.getContentPane().add(scroll);
@@ -51,7 +61,16 @@ public class Main {
 					sc.useDelimiter("\\A");
 					inputField.setText(sc.hasNext() ? sc.next() : "");
 					sc.close();
-					}catch(Exception ex) {
+					
+			        // Highlighting every instance of 'Barry'.
+			        for (String sentence : inputField.getText().split("\\."))
+			        {
+			            int i = sentence.indexOf("Barry");
+			            int j = i + "Barry".length();
+			            highlighter.addHighlight(i, j, painter);
+			        }
+			        
+					} catch(Exception ex) {
 						ex.printStackTrace();
 					}
 				}
@@ -104,7 +123,12 @@ public class Main {
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				showWindow();
+				try {
+                    showWindow();
+                } catch (BadLocationException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
 			}
 		});
 	}
