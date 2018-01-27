@@ -1,6 +1,6 @@
 import json
+
 from watson_developer_cloud import ToneAnalyzerV3
-from watson_developer_cloud.tone_analyzer_v3 import ToneInput
 
 credentials = json.load(open('res/credentials.json'))
 username = credentials['tone_analyzer'][0]['credentials']['username']
@@ -13,12 +13,13 @@ tone_analyzer = ToneAnalyzerV3(
 	password=password,
 )
 
+
 def analyze(text):
 	output = tone_analyzer.tone(text, content_type='text/plain')
-	print(json.dumps(output))
+	print(json.dumps(output, indent=2))
 
 
 if __name__ == '__main__':
-
-	text = input("Enter text to input: ")
-	analyze(text)
+	filepath = 'res/file.txt'
+	with open(filepath) as text:
+		analyze(text)
