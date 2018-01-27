@@ -1,4 +1,5 @@
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -6,6 +7,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 
@@ -16,16 +22,35 @@ public class Main {
 		JFrame frame = new JFrame("Mood Interpreter");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(900, 450);
-		frame.getContentPane().setLayout(null);
+		frame.getContentPane().setLayout(null);		
+		frame.setLocation(500, 300);
 		
 		inputField = new JTextField();
 		inputField.setBounds(57, 56, 395, 286);
 		frame.getContentPane().add(inputField);
 		inputField.setColumns(10);
-		
+				
 		JButton fileImport = new JButton("Import...");
 		fileImport.setBounds(57, 18, 97, 25);
 		frame.getContentPane().add(fileImport);
+		fileImport.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fChooser = new JFileChooser();
+				int returnValue = fChooser.showOpenDialog(null);
+				if(returnValue == JFileChooser.APPROVE_OPTION){
+					try {
+					File selFile = fChooser.getSelectedFile();
+					filePath.setText(selFile.toString());
+					Scanner sc = new Scanner(new FileInputStream(selFile.getPath()));
+					sc.useDelimiter("\\A");
+					inputField.setText(sc.next());
+					sc.close();
+					}catch(Exception ex) {
+						ex.printStackTrace();
+					}
+				}
+			}
+		});
 		
 		filePath = new JTextField();
 		filePath.setBounds(182, 19, 270, 22);
