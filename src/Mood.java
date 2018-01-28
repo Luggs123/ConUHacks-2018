@@ -1,7 +1,7 @@
 import com.google.gson.JsonObject;
 
 public class Mood {
-    private String tone;
+    public String tone;
     public String id;
     public float score;
 
