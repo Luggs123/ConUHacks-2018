@@ -2,6 +2,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 public class SentenceTone {
+    public int start;
+    public int end;
     public String Text;
     public int ID;
     public Mood[] Moods;

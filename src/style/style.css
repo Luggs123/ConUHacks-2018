@@ -51,3 +51,8 @@
 .tentativeBox {
     -fx-fill: #0000FF;
 }
+
+.popup {
+    -fx-bsckground-color: black;
+    -fx-text-fill: white;
+}

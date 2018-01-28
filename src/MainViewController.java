@@ -1,3 +1,4 @@
+import com.sun.javafx.geom.Point2D;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -12,8 +13,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.fxmisc.richtext.MouseOverTextEvent;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
 import com.google.gson.JsonObject;
@@ -47,6 +50,8 @@ public class MainViewController {
 	private Stage stage;
 	private File file;
 
+	private boolean analyzeMode = false;
+
 	@FXML
 	public void initialize() {
 		rectList = Arrays.asList(new Rectangle[]{neutralBox,
@@ -61,11 +66,11 @@ public class MainViewController {
 
 		maxRectSize = maxRectSize();
 
-		System.out.println(maxRectSize());
-
 		for (Rectangle rect : rectList) {
 			barTransition(rect, maxRectSize);
 		}
+
+		setupHoverEvent();
 	}
 
 	public void openText(ActionEvent actionEvent) throws FileNotFoundException {
@@ -97,10 +102,11 @@ public class MainViewController {
 		}
 
         for(int i = 0; i<Functions.AnalyzedTones.size();i++){
-        	System.out.println(Functions.AnalyzedTones.size());
         	SentenceTone sentence = Functions.AnalyzedTones.get(i);
         	int start = textArea.getText().indexOf(sentence.Text);
+        	sentence.start = start;
         	int end = start+sentence.Text.length();
+        	sentence.end = end;
         	System.out.println(textArea.getText().length() +" " +end);
         	if(sentence.Moods.length > 0 && start>= 0 && (end - 1) < textArea.getText().length()) {
         		highlightText(start,end, sentence.Moods[0].id);
@@ -113,10 +119,12 @@ public class MainViewController {
 		if(toggleButton.isSelected()) {
 			textArea.setEditable(false);
 			analyzeButton.setDisable(false);
+			analyzeMode = true;
 		}
 		else {
 			analyzeButton.setDisable(true);
-			textArea.setEditable(true);			
+			textArea.setEditable(true);
+			analyzeMode = false;
 		}
 
 	}
@@ -144,8 +152,6 @@ public class MainViewController {
 
 		double gap = barsGridPane.getHgap();
 
-		System.out.println("w " + width + ", p " + percent + ", g " + gap);
-
 		return width * percent - gap / 2;
 	}
 
@@ -159,5 +165,56 @@ public class MainViewController {
 		KeyFrame kf = new KeyFrame(Duration.millis(1000 * bias), kv);
 		timeline.getKeyFrames().add(kf);
 		timeline.play();
+	}
+
+	//make pop ups
+	public void setupHoverEvent() {
+		Popup popup = new Popup();
+		Label popupText = new Label();
+		popup.getContent().add(popupText);
+
+
+		textArea.setMouseOverTextDelay(java.time.Duration.ofMillis(700));
+		textArea.addEventHandler(MouseOverTextEvent.MOUSE_OVER_TEXT_BEGIN, e -> {
+			if (analyzeMode) {
+				SentenceTone sentence = findSentenceByIndex(e.getCharacterIndex());
+				if (sentence == null) {
+					return;
+				}
+				javafx.geometry.Point2D point = e.getScreenPosition();
+				System.out.println(sentence.start);
+				System.out.println(e.getCharacterIndex());
+				System.out.println(sentence.end+"\n");
+
+				StringBuilder text = new StringBuilder();
+
+				Mood[] moods = sentence.Moods;
+				for (int i = 0; i < moods.length; i++) {
+					Mood mood = moods[i];
+					text.append(i == 0 ? "" : ", ").append(mood.id).append(": ").append(mood.score);
+				}
+
+				popupText.setText(text.toString());
+				popup.show(textArea, point.getX(), point.getY());
+			}
+
+		});
+
+		textArea.addEventHandler(MouseOverTextEvent.MOUSE_OVER_TEXT_END, e -> {
+			popup.hide();
+		});
+	}
+
+	public SentenceTone findSentenceByIndex(int charIndex) {
+		SentenceTone pickedSentence = null;
+
+		for (SentenceTone sentence : Functions.AnalyzedTones) {
+			if ((sentence.start != 0 || sentence.end != 0 ) && charIndex >= sentence.start && charIndex < sentence.end) {
+				pickedSentence = sentence;
+				break;
+			}
+		}
+
+		return pickedSentence;
 	}
 }
