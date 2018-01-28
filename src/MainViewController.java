@@ -4,6 +4,7 @@ import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.ColumnConstraints;
@@ -37,6 +38,7 @@ public class MainViewController {
 	@FXML private Label pathLabel;
 	@FXML private StyleClassedTextArea textArea;
 	@FXML private ToggleButton toggleButton;
+	@FXML private Button analyzeButton;
 
 	private List<Rectangle> rectList;
 
@@ -67,6 +69,7 @@ public class MainViewController {
 	}
 
 	public void openText(ActionEvent actionEvent) throws FileNotFoundException {
+		textArea.clear();
 		FileChooser chooser = new FileChooser();
 		chooser.setTitle("Pick a File");
 		chooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Text File", ".txt"));
@@ -87,19 +90,32 @@ public class MainViewController {
 
 	}
     
+	//TODO: edge case emty moods
     public void runAnalyze(ActionEvent actionEvent) {
         if (textArea.getText().isEmpty()) {
             //TODO: add dialog box
+        }        
+        Functions.analyzeText(textArea.getText());
+        for(int i = 0; i<Functions.AnalyzedTones.size();i++){
+        	System.out.println(Functions.AnalyzedTones.size());
+        	SentenceTone sentence = Functions.AnalyzedTones.get(i);
+        	int start = textArea.getText().indexOf(sentence.Text);
+        	int end = start+sentence.Text.length();
+        	System.out.println(textArea.getText().length() +" " +end);
+        	if(sentence.Moods.length > 0 && start>= 0 && (end - 1) < textArea.getText().length()) {
+        		highlightText(start,end, sentence.Moods[0].id);
+        	}
         }
         
-        Functions.analyzeText(textArea.getText());
     }
 
 	public void toggleMode(ActionEvent aE) {		
 		if(toggleButton.isSelected()) {
 			textArea.setEditable(false);
+			analyzeButton.setDisable(false);
 		}
 		else {
+			analyzeButton.setDisable(true);
 			textArea.setEditable(true);			
 		}
 
