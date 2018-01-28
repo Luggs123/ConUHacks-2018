@@ -108,7 +108,7 @@ public class MainViewController {
         	int end = start+sentence.Text.length();
         	sentence.end = end;
         	System.out.println(textArea.getText().length() +" " +end);
-        	if(sentence.Moods.length > 0 && start>= 0 && (end - 1) < textArea.getText().length()) {
+        	if (sentence.Moods.length > 0 && start>= 0 && (end - 1) < textArea.getText().length()) {
         		highlightText(start,end, sentence.Moods[0].id);
         	}
         }
@@ -125,6 +125,8 @@ public class MainViewController {
 			analyzeButton.setDisable(true);
 			textArea.setEditable(true);
 			analyzeMode = false;
+			
+			highlightText(0, textArea.getText().length(), "neutral");
 		}
 
 	}
