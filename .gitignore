@@ -1,9 +1,10 @@
-# IntelliJ
+# intellij garbage
 .idea/
 *.iml
 
 # Eclipse
 .classpath
+!.project
 .metadata
 bin/
 tmp/
