@@ -7,8 +7,8 @@ public class SentenceTone {
     public Mood[] Moods;
 
     public SentenceTone(JsonObject obj) {
-        Text = obj.get("text").getAsJsonObject().getAsString();
-        ID = obj.get("sentence_id").getAsJsonObject().getAsInt();
+        Text = obj.get("text").getAsString();
+        ID = obj.get("sentence_id").getAsInt();
         
         JsonArray arr = obj.get("tones").getAsJsonArray();
         Moods = new Mood[arr.size()];

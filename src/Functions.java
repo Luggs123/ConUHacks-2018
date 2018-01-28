@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public final class Functions {
@@ -44,18 +45,22 @@ public final class Functions {
     
     public static void parseJSON(JsonObject json) {
         String dir = getResourceDir("uh.json");
+        JsonElement elly = json.get("sentences_tone");
+        JsonArray arr = null;
         
-        JsonArray arr = json.get("sentences_tone").getAsJsonArray();
-        for (int i = 0; i < arr.size(); i++) {
-            JsonObject obj = arr.get(i).getAsJsonObject();
-            AnalyzedTones.add(new SentenceTone(obj));
+        if(elly != null) {
+	        arr = elly.getAsJsonArray();
+	        for (int i = 0; i < arr.size(); i++) {
+	            JsonObject obj = arr.get(i).getAsJsonObject();
+	            AnalyzedTones.add(new SentenceTone(obj));
+	        }
         }
-        
         arr = json.get("document_tone").getAsJsonObject().get("tones").getAsJsonArray();
         for (int i = 0; i < arr.size(); i++) {
             JsonObject obj = arr.get(i).getAsJsonObject();
             AvgTones.add(new Mood(obj));
         }
+        System.out.print(AvgTones.get(0).score);
     }
 
     /**
