@@ -1,5 +1,4 @@
 import javafx.scene.paint.Color;
-
 public enum Tone {
     None,
     Anger,
@@ -13,6 +12,5 @@ public enum Tone {
     // TODO:
     public static Color getToneColor(Tone tone, int instance) {
         return null;
-        
     }
 }

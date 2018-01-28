@@ -1,90 +1,32 @@
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultHighlighter;
-import javax.swing.text.Highlighter;
-import javax.swing.text.Highlighter.HighlightPainter;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.Scanner;
-import java.awt.Color;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
-public class Main {
+public class Main extends Application {
+
 	private static JTextArea inputField;
 	private static JTextField filePath;
-	private static void showWindow() throws BadLocationException {
+	private static void showWindow() {
 		JFrame frame = new JFrame("Mood Interpreter");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(900, 450);
-		frame.getContentPane().setLayout(null);		
-		frame.setLocation(500, 300);
+		frame.getContentPane().setLayout(null);
 		
-		inputField = new JTextArea();		
+		inputField = new JTextArea();
+		inputField.setBounds(57, 56, 395, 286);
+		frame.getContentPane().add(inputField);
 		inputField.setColumns(10);
-		inputField.setEnabled(false);
-		inputField.setDisabledTextColor(Color.BLACK);
-		inputField.setWrapStyleWord(true);
-		inputField.setLineWrap(true);
-		inputField.setCaretPosition(inputField.getDocument().getLength());
 		
-		Highlighter highlighter = inputField.getHighlighter();
-        HighlightPainter painter = 
-                 new DefaultHighlighter.DefaultHighlightPainter(Color.pink);
-		
-		
-		JScrollPane scroll = new JScrollPane(inputField);
-		scroll.setBounds(57, 56, 395, 286);
-		frame.getContentPane().add(scroll);
-				
 		JButton fileImport = new JButton("Import...");
 		fileImport.setBounds(57, 18, 97, 25);
 		frame.getContentPane().add(fileImport);
-		fileImport.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser fChooser = new JFileChooser();
-				int returnValue = fChooser.showOpenDialog(null);
-				if(returnValue == JFileChooser.APPROVE_OPTION){
-					try {
-					File selFile = fChooser.getSelectedFile();
-					filePath.setText(selFile.toString());
-					Scanner sc = new Scanner(new FileInputStream(selFile.getPath()));
-					sc.useDelimiter("\\A");
-					inputField.setText(sc.hasNext() ? sc.next() : "");
-					sc.close();
-					
-			        // Highlighting every instance of 'Barry'.
-					String msg = inputField.getText();
-					int prevI = 0;
-			        while (prevI >= 0)
-			        {
-			            int i = msg.indexOf("Barry", prevI + 1);
-			            int j = i + "Barry".length();
-			            
-			            if (j < msg.length())
-			            {
-	                        highlighter.addHighlight(i, j, painter);
-			            }
-			            
-			            prevI = i;
-			            System.out.println(msg.substring(i, j) + " i: " + i + " j:" + j);
-			        }
-			        
-					} catch(Exception ex) {
-						ex.printStackTrace();
-					}
-				}
-			}
-		});
 		
 		filePath = new JTextField();
 		filePath.setBounds(182, 19, 270, 22);
@@ -94,16 +36,10 @@ public class Main {
 		JButton sentenceSelect = new JButton("Sentence Mode");
 		sentenceSelect.setBounds(57, 355, 165, 25);
 		frame.getContentPane().add(sentenceSelect);
-		sentenceSelect.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				inputField.setEnabled(false);				
-			}
-		});
 		
 		JButton editMode = new JButton("Edit Mode");
 		editMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				inputField.setEnabled(true);				
 			}
 		});
 		editMode.setBounds(287, 355, 165, 25);
@@ -130,15 +66,19 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				try {
-                    showWindow();
-                } catch (BadLocationException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-			}
-		});
+		launch(args);
+	}
+
+	public void start(Stage primaryStage) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("View/mainView.fxml"));
+
+		primaryStage.setTitle("Mood Interpreter");
+		primaryStage.setScene(new Scene((Parent) loader.load()));
+
+
+		MainViewController controller = (MainViewController) loader.getController();
+		controller.setStage(primaryStage);
+
+		primaryStage.show();
 	}
 }
