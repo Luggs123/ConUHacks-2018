@@ -1,6 +1,7 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.fxmisc.richtext.StyleClassedTextArea;
@@ -15,6 +16,7 @@ public class MainViewController {
 
 	@FXML private Label pathLabel;
 	@FXML private StyleClassedTextArea textArea;
+	@FXML private ToggleButton toggleButton;
 
 	public void openText(ActionEvent actionEvent) throws FileNotFoundException {
 		FileChooser chooser = new FileChooser();
@@ -29,7 +31,14 @@ public class MainViewController {
 		textArea.insertText(0, text);
 
 	}
-
+	public void toggleMode(ActionEvent aE) {		
+		if(toggleButton.isSelected()) {
+			textArea.setEditable(false);
+		}
+		else {
+			textArea.setEditable(true);			
+		}		
+	}
 	public void highlightText(int from, int to, String cssClass) {
 		textArea.setStyleClass(from, to, cssClass);
 	}
