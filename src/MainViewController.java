@@ -49,7 +49,7 @@ public class MainViewController {
 
 	@FXML
 	public void initialize() {
-		rectList = Arrays.asList(new Rectangle[]{neutralBox,
+		rectList = Arrays.asList(new Rectangle[]{
 		tentativeBox,
 		confidentBox,
 		analyticalBox,

@@ -79,17 +79,15 @@
                     <Label text="analytical: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="5" />
                     <Label text="confident: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="6" />
                     <Label text="tentative: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-                    <Label text="Neutral: " textAlignment="RIGHT" GridPane.columnIndex="0" GridPane.rowIndex="8" />
 
-					<Rectangle fx:id="angerBox" height="8" styleClass="angerBox" width="50" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" />
-					<Rectangle fx:id="disgustBox" height="8" styleClass="disgustBox" width="50" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
-					<Rectangle fx:id="fearBox" height="8" styleClass="fearBox" width="50" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
-					<Rectangle fx:id="joyBox" height="8" styleClass="joyBox" width="50" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
-					<Rectangle fx:id="sadnessBox" height="8" styleClass="sadnessBox" width="50" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" />
-					<Rectangle fx:id="analyticalBox" height="8" styleClass="analyticalBox" width="50" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" />
-					<Rectangle fx:id="confidentBox" height="8" styleClass="confidentBox" width="50" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" />
-					<Rectangle fx:id="tentativeBox" height="8" styleClass="tentativeBox" width="50" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" />
-					<Rectangle fx:id="neutralBox" height="8" width="50" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" />
+					<Rectangle fx:id="angerBox" height="8" styleClass="angerBox" width="5" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" />
+					<Rectangle fx:id="disgustBox" height="8" styleClass="disgustBox" width="5" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+					<Rectangle fx:id="fearBox" height="8" styleClass="fearBox" width="5" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
+					<Rectangle fx:id="joyBox" height="8" styleClass="joyBox" width="5" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
+					<Rectangle fx:id="sadnessBox" height="8" styleClass="sadnessBox" width="5" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" />
+					<Rectangle fx:id="analyticalBox" height="8" styleClass="analyticalBox" width="5" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" />
+					<Rectangle fx:id="confidentBox" height="8" styleClass="confidentBox" width="5" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" />
+					<Rectangle fx:id="tentativeBox" height="8" styleClass="tentativeBox" width="5" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" />
                 </children>
                <GridPane.margin>
                   <Insets />

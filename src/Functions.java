@@ -92,8 +92,6 @@ public final class Functions {
             JsonObject obj = arr.get(i).getAsJsonObject();
             AvgTones.add(new Mood(obj));
             
-            Rectangle rect = new Rectangle();
-            
             Main.controller.barTransition(Main.controller.rectList.get(8), (TotMoods[8] / MoodCount[8]) * MainViewController.maxRectSize);
             Main.controller.barTransition(Main.controller.rectList.get(7), (TotMoods[7] / MoodCount[6]) * MainViewController.maxRectSize);
             Main.controller.barTransition(Main.controller.rectList.get(6), (TotMoods[6] / MoodCount[5]) * MainViewController.maxRectSize);
