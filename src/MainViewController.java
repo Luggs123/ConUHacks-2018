@@ -40,9 +40,9 @@ public class MainViewController {
 	@FXML private ToggleButton toggleButton;
 	@FXML private Button analyzeButton;
 
-	private List<Rectangle> rectList;
+	public List<Rectangle> rectList;
 
-	private static double maxRectSize;
+	public static double maxRectSize;
 
 	private Stage stage;
 	private File file;
@@ -63,9 +63,9 @@ public class MainViewController {
 
 		System.out.println(maxRectSize());
 
-		for (Rectangle rect : rectList) {
-			barTransition(rect, maxRectSize);
-		}
+//		for (Rectangle rect : rectList) {
+//			barTransition(rect, maxRectSize);
+//		}
 	}
 
 	public void openText(ActionEvent actionEvent) throws FileNotFoundException {
@@ -135,7 +135,7 @@ public class MainViewController {
 
 	}
 
-	public double maxRectSize() {
+	private double maxRectSize() {
 		double width = barsGridPane.getPrefWidth();
 
 		ObservableList<ColumnConstraints> ColCons = barsGridPane.getColumnConstraints();

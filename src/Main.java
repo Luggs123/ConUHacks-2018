@@ -14,6 +14,8 @@ public class Main extends Application {
 	private static JTextArea inputField;
 	private static JTextField filePath;
 	
+	public static MainViewController controller;
+	
 	private static void showWindow() {
 		JFrame frame = new JFrame("Mood Interpreter");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,7 +79,7 @@ public class Main extends Application {
 		primaryStage.setScene(new Scene((Parent) loader.load()));
 
 
-		MainViewController controller = (MainViewController) loader.getController();
+		controller = (MainViewController) loader.getController();
 		controller.setStage(primaryStage);
 
 		primaryStage.show();
