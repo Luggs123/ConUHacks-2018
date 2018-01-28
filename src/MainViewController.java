@@ -9,6 +9,7 @@ import javafx.geometry.Bounds;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
@@ -62,9 +63,8 @@ public class MainViewController {
 		textArea.prefHeight(292);
 		textArea.prefWidth(450);
 		textArea.setWrapText(true);
-
+		
 		VirtualizedScrollPane scroll = new VirtualizedScrollPane(textArea);
-
 		textPane.add(scroll, 0, 1);
 
 
@@ -191,6 +191,7 @@ public class MainViewController {
 		Label popupText = new Label();
 		popup.getContent().add(popupText);
 
+		popupText.setStyle("-fx-background-color: white;");
 
 		textArea.setMouseOverTextDelay(java.time.Duration.ofMillis(700));
 		textArea.addEventHandler(MouseOverTextEvent.MOUSE_OVER_TEXT_BEGIN, e -> {
@@ -213,13 +214,14 @@ public class MainViewController {
 				}
 
 				popupText.setText(text.toString());
-				popup.show(textArea, point.getX(), point.getY());
+				popup.show(textArea, point.getX()+10, point.getY());
+				
 			}
 
 		});
 
 		textArea.addEventHandler(MouseOverTextEvent.MOUSE_OVER_TEXT_END, e -> {
-			popup.hide();
+			popup.hide();;
 		});
 
 		//bar hover event
