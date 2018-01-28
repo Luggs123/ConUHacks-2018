@@ -60,14 +60,14 @@ public final class Functions {
             Tone ton = Tone.valueOf(AvgTones.get(i).tone);
             
             switch (ton) {
-                case Anger: rect = Main.controller.rectList.get(8); break;
-                case Disgust: rect = Main.controller.rectList.get(7); break;
-                case Fear: rect = Main.controller.rectList.get(6); break;
-                case Joy: rect = Main.controller.rectList.get(5); break;
-                case Sadness: rect = Main.controller.rectList.get(4); break;
-                case Analytical: rect = Main.controller.rectList.get(3); break;
-                case Confident: rect = Main.controller.rectList.get(2); break;
-                case Tentative: rect = Main.controller.rectList.get(1); break;
+                case Anger: rect = Main.controller.rectList.get(7); break;
+                case Disgust: rect = Main.controller.rectList.get(6); break;
+                case Fear: rect = Main.controller.rectList.get(5); break;
+                case Joy: rect = Main.controller.rectList.get(4); break;
+                case Sadness: rect = Main.controller.rectList.get(3); break;
+                case Analytical: rect = Main.controller.rectList.get(2); break;
+                case Confident: rect = Main.controller.rectList.get(1); break;
+                case Tentative: rect = Main.controller.rectList.get(0); break;
             }
             
             if (ton != Tone.None) {
