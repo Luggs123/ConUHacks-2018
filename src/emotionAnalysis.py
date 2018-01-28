@@ -1,6 +1,5 @@
 import json
-
-from tone import Tone
+from sys import argv
 
 from watson_developer_cloud import ToneAnalyzerV3
 
@@ -18,14 +17,10 @@ tone_analyzer = ToneAnalyzerV3(
 
 def analyze(text):
     output = tone_analyzer.tone(text, content_type='text/plain')
-    # Should print out 'Joy' and "Analytical".
-    for tone in output["document_tone"]["tones"]:
-        tone_obj = Tone(tone)
-        print(str(tone_obj.score) + "\n")
     print(json.dumps(output, indent=2))
 
 
 if __name__ == '__main__':
-    filepath = 'res/file.txt'
-    with open(filepath) as text:
+    filepath = argv[1]
+	with open(filepath) as text:
         analyze(text)

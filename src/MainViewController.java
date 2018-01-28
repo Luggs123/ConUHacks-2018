@@ -5,14 +5,15 @@ import javafx.scene.control.ToggleButton;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.fxmisc.richtext.StyleClassedTextArea;
+import org.omg.SendingContext.RunTime;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
 
 public class MainViewController {
 
 	private Stage stage;
+	private File file;
 
 	@FXML private Label pathLabel;
 	@FXML private StyleClassedTextArea textArea;
@@ -21,7 +22,8 @@ public class MainViewController {
 	public void openText(ActionEvent actionEvent) throws FileNotFoundException {
 		FileChooser chooser = new FileChooser();
 		chooser.setTitle("Pick a File");
-		File file = chooser.showOpenDialog(stage);
+		chooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Text File", ".txt"));
+		file = chooser.showOpenDialog(stage);
 
 		pathLabel.setText(file.getName());
 
@@ -29,6 +31,12 @@ public class MainViewController {
 		String text = sc.hasNext() ? sc.useDelimiter("\\A").next() : "";
 
 		textArea.insertText(0, text);
+
+		try {
+			parseEmotion();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 	public void toggleMode(ActionEvent aE) {		
@@ -45,5 +53,32 @@ public class MainViewController {
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
+	}
+
+	public void parseEmotion() throws IOException {
+		WatsonConnection connection = new WatsonConnection();
+		connection.interpret(file);
+//		Process proc = Runtime.getRuntime().exec(String.format("python %s %s",getClass().getResource("emotionAnalysis.py").getPath(),  file.getAbsolutePath()));
+//
+//		BufferedReader iStream = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+//		BufferedReader errStream = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+//
+//		String json = "";
+//
+//		String input;
+//
+//		while ((input = iStream.readLine()) != null) {
+//			json += input + '\n';
+//		}
+//
+//		String error = "error: ";
+//		String err;
+//
+//		while ((err = errStream.readLine()) != null) {
+//			error += err + '\n';
+//		}
+//
+//		System.out.println(json);
+//		System.out.println(error);
 	}
 }
