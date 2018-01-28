@@ -163,7 +163,7 @@ public class MainViewController {
 		double bias = 0.8 + rand.nextDouble() * 0.4;
 
 		Timeline timeline = new Timeline();
-		KeyValue kv = new KeyValue(rect.widthProperty(), endVal);
+		KeyValue kv = new KeyValue(rect.widthProperty(), Math.max(5, endVal));
 		KeyFrame kf = new KeyFrame(Duration.millis(1000 * bias), kv);
 		timeline.getKeyFrames().add(kf);
 		timeline.play();
