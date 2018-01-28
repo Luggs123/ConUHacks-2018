@@ -38,7 +38,22 @@ public final class Functions {
         
         return msg;
     }
-    
+
+    public static void flushValues() {
+		while (!AnalyzedTones.isEmpty())
+			AnalyzedTones.remove(0);
+
+		while (!AvgTones.isEmpty())
+			AvgTones.remove(0);
+
+		for (int i = 0; i < TotMoods.length; i++) {
+			TotMoods[i] = 0;
+		}
+		for (int i = 0; i < MoodCount.length; i++) {
+			MoodCount[i] = 0;
+		}
+	}
+
     public static void parseJSON(JsonObject json) {
         JsonElement elly = json.get("sentences_tone");
         JsonArray arr = null;
@@ -91,15 +106,20 @@ public final class Functions {
         for (int i = 0; i < arr.size(); i++) {
             JsonObject obj = arr.get(i).getAsJsonObject();
             AvgTones.add(new Mood(obj));
-            
-            Main.controller.barTransition(Main.controller.rectList.get(7), (TotMoods[7] / MoodCount[7]) * MainViewController.maxRectSize);
-            Main.controller.barTransition(Main.controller.rectList.get(6), (TotMoods[6] / MoodCount[6]) * MainViewController.maxRectSize);
-            Main.controller.barTransition(Main.controller.rectList.get(5), (TotMoods[5] / MoodCount[5]) * MainViewController.maxRectSize);
-            Main.controller.barTransition(Main.controller.rectList.get(4), (TotMoods[4] / MoodCount[4]) * MainViewController.maxRectSize);
-            Main.controller.barTransition(Main.controller.rectList.get(3), (TotMoods[3] / MoodCount[3]) * MainViewController.maxRectSize);
-            Main.controller.barTransition(Main.controller.rectList.get(2), (TotMoods[2] / MoodCount[2]) * MainViewController.maxRectSize);
-            Main.controller.barTransition(Main.controller.rectList.get(1), (TotMoods[1] / MoodCount[1]) * MainViewController.maxRectSize);
-            Main.controller.barTransition(Main.controller.rectList.get(0), (TotMoods[0] / MoodCount[0]) * MainViewController.maxRectSize);
+
+			for (float f : TotMoods) {
+				System.out.println(f + ", ");
+			}
+
+			for (int j = 7; j >= 0; j--) {
+				double result = TotMoods[j] / MoodCount[j];
+				System.out.println(result);
+				if (MoodCount[j] != 0)
+					Main.controller.barTransition(Main.controller.rectList.get(j), (result - 0.3) * 10/7 * MainViewController.maxRectSize);
+				else
+					Main.controller.barTransition(Main.controller.rectList.get(j), 0);
+
+			}
         }
     }
 

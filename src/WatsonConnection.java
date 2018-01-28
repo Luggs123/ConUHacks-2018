@@ -37,7 +37,9 @@ public class WatsonConnection {
 		JsonObject output = gson.fromJson(tone.toString(), JsonObject.class);
 
 		System.out.println(output);
-		
+
+		Functions.flushValues();
+
 		Functions.parseJSON(output);
 	}
 

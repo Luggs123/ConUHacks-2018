@@ -1,12 +1,17 @@
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.StringBinding;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Bounds;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
@@ -17,7 +22,9 @@ import javafx.util.Duration;
 import org.fxmisc.richtext.MouseOverTextEvent;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
+import javax.print.FlavorException;
 import java.io.*;
+import java.text.MessageFormat;
 import java.util.*;
 
 public class MainViewController {
@@ -79,13 +86,9 @@ public class MainViewController {
 		chooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Text File", ".txt"));
 		file = chooser.showOpenDialog(stage);
 
-		pathLabel.setText(file.getName());
 
-		Scanner sc = new Scanner(file);
-		String text = sc.hasNext() ? sc.useDelimiter("\\A").next() : "";
-		sc.close();
 
-		textArea.insertText(0, text);
+		textArea.insertText(0, ReaderUtil.fileToString(file));
 
 	}
     
@@ -186,7 +189,7 @@ public class MainViewController {
 				javafx.geometry.Point2D point = e.getScreenPosition();
 				System.out.println(sentence.start);
 				System.out.println(e.getCharacterIndex());
-				System.out.println(sentence.end+"\n");
+				System.out.println(sentence.end + "\n");
 
 				StringBuilder text = new StringBuilder();
 
@@ -205,6 +208,29 @@ public class MainViewController {
 		textArea.addEventHandler(MouseOverTextEvent.MOUSE_OVER_TEXT_END, e -> {
 			popup.hide();
 		});
+
+		//bar hover event
+		for (Rectangle rect : rectList) {
+			Popup barPopup = new Popup();
+			Label popText = new Label();
+			barPopup.getContent().add(popText);
+
+			popText.textProperty().bind(Bindings.createStringBinding(
+					() -> ""+ String.format("%.0f",(rect.widthProperty().get() / maxRectSize * 100)) + "%",
+					rect.widthProperty()));
+
+			rect.setOnMouseEntered(e -> {
+				Bounds bounds = rect.getBoundsInLocal();
+				Bounds screenBounds = rect.localToScreen(bounds);
+				barPopup.show(barsGridPane, screenBounds.getMinX(), screenBounds.getMaxY());
+				System.out.println("test");
+
+			});
+
+			rect.setOnMouseExited( e -> {
+				barPopup.hide();
+			});
+		}
 	}
 
 	public SentenceTone findSentenceByIndex(int charIndex) {
