@@ -1,3 +1,24 @@
-.red {
-    -rtfx-background-color: red;
+.anger {
+    -rtfx-background-color: #FF6060;
+}
+.disgust {
+    -rtfx-background-color: #60FF60;
+}
+.fear {
+    -rtfx-background-color: #FFA0FF;
+}
+.joy {
+    -rtfx-background-color: #FFFF80;
+}
+.sadness {
+    -rtfx-background-color: #6060FF;
+}
+.analytical {
+    -rtfx-background-color: #00FF00;
+}
+.confident {
+    -rtfx-background-color: #FF0000;
+}
+.tentative {
+    -rtfx-background-color: #0000FF;
 }
