@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
+<?import org.fxmisc.richtext.StyleClassedTextArea?>
 <AnchorPane prefHeight="450.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainViewController">
    <children>
       <GridPane hgap="20.0" prefHeight="450.0" prefWidth="900.0">
@@ -23,7 +24,7 @@
             <RowConstraints />
         </rowConstraints>
          <children>
-            <TextArea fx:id="textArea" prefHeight="292.0" prefWidth="450.0" wrapText="true" GridPane.rowIndex="1" />
+            <StyleClassedTextArea fx:id="textArea" prefHeight="292.0" prefWidth="450.0" wrapText="true" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" text="Analyze" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets />

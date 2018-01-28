@@ -1,9 +1,9 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.fxmisc.richtext.StyleClassedTextArea;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +14,7 @@ public class MainViewController {
 	private Stage stage;
 
 	@FXML private Label pathLabel;
-	@FXML private TextArea textArea;
+	@FXML private StyleClassedTextArea textArea;
 
 	public void openText(ActionEvent actionEvent) throws FileNotFoundException {
 		FileChooser chooser = new FileChooser();
@@ -26,7 +26,7 @@ public class MainViewController {
 		Scanner sc = new Scanner(file);
 		String text = sc.hasNext() ? sc.useDelimiter("\\A").next() : "";
 
-		textArea.setText(text);
+		textArea.insertText(0, text);
 
 	}
 
