@@ -16,13 +16,11 @@
            <RowConstraints />
             <RowConstraints />
         </rowConstraints>
-         <children>
-            <StyleClassedTextArea fx:id="textArea" prefHeight="292.0" prefWidth="450.0" wrapText="true" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" text="Analyze" onAction="#runAnalyze" GridPane.columnIndex="1">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin></Button>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>      	
+         		
+    		<StyleClassedTextArea fx:id="textArea" prefHeight="292.0" prefWidth="450.0" wrapText="true" GridPane.rowIndex="1"/>         
+			
+			<HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
                   <Button fx:id="importButton" mnemonicParsing="false" onAction="#openText" text="Import" />
                   <Label fx:id="pathLabel" maxWidth="1.7976931348623157E308" prefHeight="21.0" prefWidth="79.0" HBox.hgrow="ALWAYS" />
@@ -37,12 +35,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Edit Mode" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES">
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Analyze"  GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Button>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Sentence Mode" />
+                  <ToggleButton fx:id="toggleButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#toggleMode" text="Mode" />
                </children>
                <GridPane.margin>
                   <Insets />
