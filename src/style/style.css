@@ -22,3 +22,32 @@
 .tentative {
     -rtfx-background-color: #0000FF;
 }
+
+.neutral {
+    -rtfx-background-color: none;
+}
+
+.angerBox {
+    -fx-fill: #FF6060;
+}
+.disgustBox {
+    -fx-fill: #60FF60;
+}
+.fearBox {
+    -fx-fill: #FFA0FF;
+}
+.joyBox {
+    -fx-fill: #FFFF80;
+}
+.sadnessBox {
+    -fx-fill: #6060FF;
+}
+.analyticalBox {
+    -fx-fill: #00FF00;
+}
+.confidentBox {
+    -fx-fill: #FF0000;
+}
+.tentativeBox {
+    -fx-fill: #0000FF;
+}

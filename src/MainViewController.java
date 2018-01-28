@@ -1,26 +1,72 @@
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
 import com.google.gson.JsonObject;
+import org.w3c.dom.css.Rect;
 
 import java.io.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class MainViewController {
 
-	private Stage stage;
-	private File file;
+	@FXML private GridPane barsGridPane;
+	@FXML private Rectangle neutralBox;
+	@FXML private Rectangle tentativeBox;
+	@FXML private Rectangle confidentBox;
+	@FXML private Rectangle analyticalBox;
+	@FXML private Rectangle sadnessBox;
+	@FXML private Rectangle joyBox;
+	@FXML private Rectangle fearBox;
+	@FXML private Rectangle disgustBox;
+	@FXML private Rectangle angerBox;
 
 	@FXML private Label pathLabel;
 	@FXML private StyleClassedTextArea textArea;
 	@FXML private ToggleButton toggleButton;
 	@FXML private Button analyzeButton;
+
+	private List<Rectangle> rectList;
+
+	private static double maxRectSize;
+
+	private Stage stage;
+	private File file;
+
+	@FXML
+	public void initialize() {
+		rectList = Arrays.asList(new Rectangle[]{neutralBox,
+		tentativeBox,
+		confidentBox,
+		analyticalBox,
+		sadnessBox,
+		joyBox,
+		fearBox,
+		disgustBox,
+		angerBox});
+
+		maxRectSize = maxRectSize();
+
+		System.out.println(maxRectSize());
+
+		for (Rectangle rect : rectList) {
+			barTransition(rect, maxRectSize);
+		}
+	}
 
 	public void openText(ActionEvent actionEvent) throws FileNotFoundException {
 		textArea.clear();
@@ -71,7 +117,8 @@ public class MainViewController {
 		else {
 			analyzeButton.setDisable(true);
 			textArea.setEditable(true);			
-		}		
+		}
+
 	}
 	
 	public void highlightText(int from, int to, String cssClass) {
@@ -84,6 +131,7 @@ public class MainViewController {
 
 	public void parseEmotion() throws IOException {
 		WatsonConnection connection = new WatsonConnection();
+<<<<<<< HEAD
 		connection.interpret(textArea.getText());
 //		Process proc = Runtime.getRuntime().exec(String.format("python %s %s",getClass().getResource("emotionAnalysis.py").getPath(),  file.getAbsolutePath()));
 //
@@ -107,5 +155,36 @@ public class MainViewController {
 //
 //		System.out.println(json);
 //		System.out.println(error);
+=======
+		connection.interpret(file);
+
+	}
+
+	public double maxRectSize() {
+		double width = barsGridPane.getPrefWidth();
+
+		ObservableList<ColumnConstraints> ColCons = barsGridPane.getColumnConstraints();
+
+		double percent =  ColCons.get(1).getPercentWidth() / 100;
+
+		double gap = barsGridPane.getHgap();
+
+		System.out.println("w " + width + ", p " + percent + ", g " + gap);
+
+		return width * percent - gap / 2;
+	}
+
+	//slightly random movement is pretty
+	public void barTransition(Rectangle rect, double endVal) {
+		Random rand = new Random();
+		double bias = 0.8 + rand.nextDouble() * 0.4;
+
+		Timeline timeline = new Timeline();
+		KeyValue kv = new KeyValue(rect.widthProperty(), endVal);
+		KeyFrame kf = new KeyFrame(Duration.millis(1000 * bias), kv);
+		timeline.getKeyFrames().add(kf);
+		timeline.play();
+
+>>>>>>> d4f6eaefc031d84aa5ca168c5e5c4693ce01f6da
 	}
 }
