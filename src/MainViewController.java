@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Popup;
@@ -17,9 +16,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.fxmisc.richtext.MouseOverTextEvent;
 import org.fxmisc.richtext.StyleClassedTextArea;
-
-import com.google.gson.JsonObject;
-import org.w3c.dom.css.Rect;
 
 import java.io.*;
 import java.util.*;
@@ -62,6 +58,9 @@ public class MainViewController {
 		fearBox,
 		disgustBox,
 		angerBox});
+		
+		Functions.TotMoods = new float[rectList.size()];
+		Functions.MoodCount = new int[rectList.size()];
 
 		maxRectSize = maxRectSize();
 
@@ -84,6 +83,7 @@ public class MainViewController {
 
 		Scanner sc = new Scanner(file);
 		String text = sc.hasNext() ? sc.useDelimiter("\\A").next() : "";
+		sc.close();
 
 		textArea.insertText(0, text);
 
