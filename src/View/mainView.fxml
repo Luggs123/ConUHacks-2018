@@ -26,7 +26,7 @@
         </rowConstraints>
          <children>      	
          		
-    		<StyleClassedTextArea fx:id="textArea" prefHeight="292.0" prefWidth="450.0" editable="false" wrapText="true" GridPane.rowIndex="1" />         
+    		<StyleClassedTextArea fx:id="textArea" prefHeight="292.0" prefWidth="450.0" editable="true" wrapText="true" GridPane.rowIndex="1" />         
 			
 			<HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>

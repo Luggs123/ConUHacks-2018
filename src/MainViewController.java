@@ -131,32 +131,7 @@ public class MainViewController {
 
 	public void parseEmotion() throws IOException {
 		WatsonConnection connection = new WatsonConnection();
-<<<<<<< HEAD
 		connection.interpret(textArea.getText());
-//		Process proc = Runtime.getRuntime().exec(String.format("python %s %s",getClass().getResource("emotionAnalysis.py").getPath(),  file.getAbsolutePath()));
-//
-//		BufferedReader iStream = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-//		BufferedReader errStream = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
-//
-//		String json = "";
-//
-//		String input;
-//
-//		while ((input = iStream.readLine()) != null) {
-//			json += input + '\n';
-//		}
-//
-//		String error = "error: ";
-//		String err;
-//
-//		while ((err = errStream.readLine()) != null) {
-//			error += err + '\n';
-//		}
-//
-//		System.out.println(json);
-//		System.out.println(error);
-=======
-		connection.interpret(file);
 
 	}
 
@@ -184,7 +159,5 @@ public class MainViewController {
 		KeyFrame kf = new KeyFrame(Duration.millis(1000 * bias), kv);
 		timeline.getKeyFrames().add(kf);
 		timeline.play();
-
->>>>>>> d4f6eaefc031d84aa5ca168c5e5c4693ce01f6da
 	}
 }
