@@ -2,16 +2,13 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
-import javafx.beans.binding.StringBinding;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
@@ -19,16 +16,20 @@ import javafx.stage.FileChooser;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.MouseOverTextEvent;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
-import javax.print.FlavorException;
-import java.io.*;
-import java.text.MessageFormat;
-import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class MainViewController {
 
+	public GridPane textPane;
 	@FXML private GridPane barsGridPane;
 	@FXML private Rectangle neutralBox;
 	@FXML private Rectangle tentativeBox;
@@ -56,6 +57,17 @@ public class MainViewController {
 
 	@FXML
 	public void initialize() {
+
+		textArea = new StyleClassedTextArea();
+		textArea.prefHeight(292);
+		textArea.prefWidth(450);
+		textArea.setWrapText(true);
+
+		VirtualizedScrollPane scroll = new VirtualizedScrollPane(textArea);
+
+		textPane.add(scroll, 0, 1);
+
+
 		rectList = Arrays.asList(new Rectangle[]{
 		tentativeBox,
 		confidentBox,
@@ -77,6 +89,7 @@ public class MainViewController {
 //			barTransition(rect, maxRectSize);
 //		}
 		setupHoverEvent();
+
 	}
 
 	public void openText(ActionEvent actionEvent) throws FileNotFoundException {

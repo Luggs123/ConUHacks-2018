@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Rectangle?>
-<?import org.fxmisc.richtext.StyleClassedTextArea?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <AnchorPane prefHeight="450.0" prefWidth="900.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainViewController">
    <children>
-      <GridPane hgap="20.0" prefHeight="450.0" prefWidth="900.0">
+      <GridPane fx:id="textPane" hgap="20.0" prefHeight="450.0" prefWidth="900.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -24,10 +16,7 @@
            <RowConstraints />
             <RowConstraints />
         </rowConstraints>
-         <children>      	
-         		
-    		<StyleClassedTextArea fx:id="textArea" prefHeight="292.0" prefWidth="450.0" editable="true" wrapText="true" GridPane.rowIndex="1" />         
-			
+         <children>
 			<HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
                   <Button fx:id="importButton" mnemonicParsing="false" onAction="#openText" text="Import" />
@@ -43,7 +32,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="analyzeButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Analyze" disable="true" onAction="#runAnalyze" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES">
+                  <Button fx:id="analyzeButton" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#runAnalyze" text="Analyze" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -57,7 +46,7 @@
             <GridPane fx:id="barsGridPane" hgap="10.0" prefHeight="299.0" prefWidth="420.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
               <columnConstraints>
                 <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" percentWidth="30" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" percentWidth="70" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="70" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
