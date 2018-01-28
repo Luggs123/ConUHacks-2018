@@ -4,7 +4,8 @@ import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.fxmisc.richtext.StyleClassedTextArea;
-import org.omg.SendingContext.RunTime;
+
+import com.google.gson.JsonObject;
 
 import java.io.*;
 import java.util.Scanner;
@@ -37,6 +38,14 @@ public class MainViewController {
 		}
 
 	}
+    
+    public void runAnalyze(ActionEvent actionEvent) {
+        if (textArea.getText().isEmpty()) {
+            //TODO: add dialog box
+        }
+        
+        Functions.analyzeText(textArea.getText());
+    }
 
 	public void highlightText(int from, int to, String cssClass) {
 		textArea.setStyleClass(from, to, cssClass);

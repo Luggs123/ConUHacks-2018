@@ -13,6 +13,7 @@ public class Main extends Application {
 
 	private static JTextArea inputField;
 	private static JTextField filePath;
+	
 	private static void showWindow() {
 		JFrame frame = new JFrame("Mood Interpreter");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

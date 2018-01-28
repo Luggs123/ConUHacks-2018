@@ -18,7 +18,7 @@
         </rowConstraints>
          <children>
             <StyleClassedTextArea fx:id="textArea" prefHeight="292.0" prefWidth="450.0" wrapText="true" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" text="Analyze" GridPane.columnIndex="1">
+            <Button mnemonicParsing="false" text="Analyze" onAction="#runAnalyze" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin></Button>

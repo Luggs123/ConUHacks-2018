@@ -1,14 +1,14 @@
-import org.json.*;
+import com.google.gson.JsonObject;
 
 public class Mood {
-    private Tone tone;
+    private String tone;
     private String id;
     private float score;
 
-    public Mood(JSONObject obj) {
-        tone = obj.getEnum(Tone.class, "tone_name");
-        id = obj.getString("tone_id");
-        score = obj.getFloat("score");
+    public Mood(JsonObject obj) {
+        tone = obj.get("tone_name").getAsJsonObject().getAsString();
+        id = obj.get("tone_id").getAsJsonObject().getAsString();
+        score = obj.get("score").getAsJsonObject().getAsFloat();
     }
 
 }

@@ -1,13 +1,19 @@
-import org.json.JSONObject;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 public class SentenceTone {
     public String Text;
     public int ID;
-    public Mood Mood;
+    public Mood[] Moods;
 
-    public SentenceTone(JSONObject obj) {
-        Text = obj.getString("text");
-        ID = obj.getInt("sentence_id");
-        Mood = new Mood(obj.getJSONArray("tones").getJSONObject(0));
+    public SentenceTone(JsonObject obj) {
+        Text = obj.get("text").getAsJsonObject().getAsString();
+        ID = obj.get("sentence_id").getAsJsonObject().getAsInt();
+        
+        JsonArray arr = obj.get("tones").getAsJsonArray();
+        Moods = new Mood[arr.size()];
+        for (int i = 0; i < arr.size(); i++) {
+            Moods[i] = new Mood(arr.get(i).getAsJsonObject());
+        }
     }
 }

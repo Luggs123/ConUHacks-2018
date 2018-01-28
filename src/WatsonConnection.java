@@ -6,7 +6,6 @@ import com.ibm.watson.developer_cloud.tone_analyzer.v3.ToneAnalyzer;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneAnalysis;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneInput;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneOptions;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,11 +22,9 @@ public class WatsonConnection {
 		JsonObject creds = obj.get("tone_analyzer").getAsJsonObject().get("credentials").getAsJsonObject();
 		username = creds.get("username").getAsString();
 		password = creds.get("password").getAsString();
-
-
 	}
 
-	public JsonObject interpret(File file) {
+	public void interpret(File file) {
 		ToneAnalyzer service = new ToneAnalyzer("2017-09-21", username, password);
 
 		ToneInput toneInput = new ToneInput.Builder()
@@ -40,7 +37,8 @@ public class WatsonConnection {
 		JsonObject output = gson.fromJson(tone.toString(), JsonObject.class);
 
 		System.out.println(output);
-		return output;
+		
+		Functions.parseJSON(output);
 	}
 
 }
