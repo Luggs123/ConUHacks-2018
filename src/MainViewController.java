@@ -30,6 +30,10 @@ public class MainViewController {
 
 	}
 
+	public void highlightText(int from, int to, String cssClass) {
+		textArea.setStyleClass(from, to, cssClass);
+	}
+
 	public void setStage(Stage stage) {
 		this.stage = stage;
 	}
