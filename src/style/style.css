@@ -1,26 +1,26 @@
 .anger {
-    -rtfx-background-color: #FF6060;
+    -rtfx-background-color: #ee5158;
 }
 .disgust {
-    -rtfx-background-color: #60FF60;
+    -rtfx-background-color: #97e077;
 }
 .fear {
-    -rtfx-background-color: #FFA0FF;
+    -rtfx-background-color: #ffccfb;
 }
 .joy {
-    -rtfx-background-color: #FFFF80;
+    -rtfx-background-color: #decb38;
 }
 .sadness {
-    -rtfx-background-color: #6060FF;
+    -rtfx-background-color: #9ca1d9;
 }
 .analytical {
-    -rtfx-background-color: #00FF00;
+    -rtfx-background-color: #6ae294;
 }
 .confident {
-    -rtfx-background-color: #FF0000;
+    -rtfx-background-color: #eb8725;
 }
 .tentative {
-    -rtfx-background-color: #0000FF;
+    -rtfx-background-color: #6ddad7;
 }
 
 .neutral {
@@ -28,28 +28,28 @@
 }
 
 .angerBox {
-    -fx-fill: #FF6060;
+    -fx-fill: #ee5158;
 }
 .disgustBox {
-    -fx-fill: #60FF60;
+    -fx-fill: #97e077;
 }
 .fearBox {
-    -fx-fill: #FFA0FF;
+    -fx-fill: #ffccfb;
 }
 .joyBox {
-    -fx-fill: #FFFF80;
+    -fx-fill: #decb38;
 }
 .sadnessBox {
-    -fx-fill: #6060FF;
+    -fx-fill: #9ca1d9;
 }
 .analyticalBox {
-    -fx-fill: #00FF00;
+    -fx-fill: #6ae294;
 }
 .confidentBox {
-    -fx-fill: #FF0000;
+    -fx-fill: #eb8725;
 }
 .tentativeBox {
-    -fx-fill: #0000FF;
+    -fx-fill: #6ddad7;
 }
 
 .popup {
