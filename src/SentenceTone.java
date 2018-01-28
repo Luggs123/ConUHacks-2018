@@ -1,14 +1,13 @@
 import org.json.JSONObject;
 
 public class SentenceTone {
-    private String text;
-    private int id;
-    private Mood mood;
+    public String Text;
+    public int ID;
+    public Mood Mood;
 
     public SentenceTone(JSONObject obj) {
-        text = obj.getString("text");
-        id = obj.getInt("sentence_id");
-        mood = new Mood(obj.getJSONArray("tones").getJSONObject(0));
+        Text = obj.getString("text");
+        ID = obj.getInt("sentence_id");
+        Mood = new Mood(obj.getJSONArray("tones").getJSONObject(0));
     }
-
 }

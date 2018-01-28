@@ -63,11 +63,20 @@ public class Main {
 					sc.close();
 					
 			        // Highlighting every instance of 'Barry'.
-			        for (String sentence : inputField.getText().split("\\."))
+					String msg = inputField.getText();
+					int prevI = 0;
+			        while (prevI >= 0)
 			        {
-			            int i = sentence.indexOf("Barry");
+			            int i = msg.indexOf("Barry", prevI + 1);
 			            int j = i + "Barry".length();
-			            highlighter.addHighlight(i, j, painter);
+			            
+			            if (j < msg.length())
+			            {
+	                        highlighter.addHighlight(i, j, painter);
+			            }
+			            
+			            prevI = i;
+			            System.out.println(msg.substring(i, j) + " i: " + i + " j:" + j);
 			        }
 			        
 					} catch(Exception ex) {

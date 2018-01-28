@@ -1,3 +1,4 @@
+import javafx.scene.paint.Color;
 
 public enum Tone {
     None,
@@ -7,5 +8,11 @@ public enum Tone {
     Sadness,
     Analytical,
     Confident,
-    Tentative
+    Tentative;
+    
+    // TODO:
+    public static Color getToneColor(Tone tone, int instance) {
+        return null;
+        
+    }
 }
