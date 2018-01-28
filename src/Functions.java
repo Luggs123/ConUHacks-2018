@@ -54,31 +54,31 @@ public final class Functions {
 	            for (Mood tone : senTon.Moods)
 	            {
 
-	                Tone ton = Tone.valueOf(AvgTones.get(i).tone);
+	                Tone ton = Tone.valueOf(tone.tone);
 	                switch (ton) {
-	                    case Anger: TotMoods[8] += tone.score;
-	                        MoodCount[8]++;
+	                    case Anger: TotMoods[7] += tone.score;
+	                        MoodCount[7]++;
 	                        break;
-	                    case Disgust: TotMoods[7] += tone.score;
-                        MoodCount[7]++;
-                        break;
-	                    case Fear: TotMoods[6] += tone.score;
+	                    case Disgust: TotMoods[6] += tone.score;
                         MoodCount[6]++;
                         break;
-	                    case Joy: TotMoods[5] += tone.score;
+	                    case Fear: TotMoods[5] += tone.score;
                         MoodCount[5]++;
                         break;
-	                    case Sadness: TotMoods[4] += tone.score;
+	                    case Joy: TotMoods[4] += tone.score;
                         MoodCount[4]++;
                         break;
-	                    case Analytical: TotMoods[3] += tone.score;
+	                    case Sadness: TotMoods[3] += tone.score;
                         MoodCount[3]++;
                         break;
-	                    case Confident: TotMoods[2] += tone.score;
+	                    case Analytical: TotMoods[2] += tone.score;
                         MoodCount[2]++;
                         break;
-	                    case Tentative: TotMoods[1] += tone.score;
+	                    case Confident: TotMoods[1] += tone.score;
                         MoodCount[1]++;
+                        break;
+	                    case Tentative: TotMoods[0] += tone.score;
+                        MoodCount[0]++;
                         break;
 	                    default:
 	                        break;
@@ -92,14 +92,14 @@ public final class Functions {
             JsonObject obj = arr.get(i).getAsJsonObject();
             AvgTones.add(new Mood(obj));
             
-            Main.controller.barTransition(Main.controller.rectList.get(8), (TotMoods[8] / MoodCount[8]) * MainViewController.maxRectSize);
-            Main.controller.barTransition(Main.controller.rectList.get(7), (TotMoods[7] / MoodCount[6]) * MainViewController.maxRectSize);
-            Main.controller.barTransition(Main.controller.rectList.get(6), (TotMoods[6] / MoodCount[5]) * MainViewController.maxRectSize);
-            Main.controller.barTransition(Main.controller.rectList.get(5), (TotMoods[5] / MoodCount[4]) * MainViewController.maxRectSize);
-            Main.controller.barTransition(Main.controller.rectList.get(4), (TotMoods[4] / MoodCount[3]) * MainViewController.maxRectSize);
-            Main.controller.barTransition(Main.controller.rectList.get(3), (TotMoods[3] / MoodCount[2]) * MainViewController.maxRectSize);
+            Main.controller.barTransition(Main.controller.rectList.get(7), (TotMoods[7] / MoodCount[7]) * MainViewController.maxRectSize);
+            Main.controller.barTransition(Main.controller.rectList.get(6), (TotMoods[6] / MoodCount[6]) * MainViewController.maxRectSize);
+            Main.controller.barTransition(Main.controller.rectList.get(5), (TotMoods[5] / MoodCount[5]) * MainViewController.maxRectSize);
+            Main.controller.barTransition(Main.controller.rectList.get(4), (TotMoods[4] / MoodCount[4]) * MainViewController.maxRectSize);
+            Main.controller.barTransition(Main.controller.rectList.get(3), (TotMoods[3] / MoodCount[3]) * MainViewController.maxRectSize);
             Main.controller.barTransition(Main.controller.rectList.get(2), (TotMoods[2] / MoodCount[2]) * MainViewController.maxRectSize);
             Main.controller.barTransition(Main.controller.rectList.get(1), (TotMoods[1] / MoodCount[1]) * MainViewController.maxRectSize);
+            Main.controller.barTransition(Main.controller.rectList.get(0), (TotMoods[0] / MoodCount[0]) * MainViewController.maxRectSize);
         }
     }
 
