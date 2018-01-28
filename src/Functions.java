@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -35,10 +36,6 @@ public final class Functions {
         return msg;
     }
     
-    public static void analyzeText(String text) {
-
-    }
-    
     public static void parseJSON(JsonObject json) {
         String dir = getResourceDir("uh.json");
         JsonElement elly = json.get("sentences_tone");
@@ -56,7 +53,7 @@ public final class Functions {
             JsonObject obj = arr.get(i).getAsJsonObject();
             AvgTones.add(new Mood(obj));
         }
-        System.out.print(AvgTones.get(0).score);
+        
     }
 
     /**

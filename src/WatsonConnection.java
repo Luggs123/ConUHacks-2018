@@ -24,11 +24,11 @@ public class WatsonConnection {
 		password = creds.get("password").getAsString();
 	}
 
-	public void interpret(File file) {
+	public void interpret(String text) {
 		ToneAnalyzer service = new ToneAnalyzer("2017-09-21", username, password);
 
 		ToneInput toneInput = new ToneInput.Builder()
-				.text(ReaderUtil.fileToString(file)).build();
+				.text(text).build();
 		ToneOptions options = new ToneOptions.Builder()
 				.toneInput(toneInput).build();
 		ToneAnalysis tone = service.tone(options).execute();

@@ -36,12 +36,6 @@ public class MainViewController {
 
 		textArea.insertText(0, text);
 
-		try {
-			parseEmotion();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 	}
     
 	//TODO: edge case emty moods
@@ -49,7 +43,13 @@ public class MainViewController {
         if (textArea.getText().isEmpty()) {
             //TODO: add dialog box
         }        
-        Functions.analyzeText(textArea.getText());
+
+        try {
+			parseEmotion();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
         for(int i = 0; i<Functions.AnalyzedTones.size();i++){
         	System.out.println(Functions.AnalyzedTones.size());
         	SentenceTone sentence = Functions.AnalyzedTones.get(i);
@@ -84,7 +84,7 @@ public class MainViewController {
 
 	public void parseEmotion() throws IOException {
 		WatsonConnection connection = new WatsonConnection();
-		connection.interpret(file);
+		connection.interpret(textArea.getText());
 //		Process proc = Runtime.getRuntime().exec(String.format("python %s %s",getClass().getResource("emotionAnalysis.py").getPath(),  file.getAbsolutePath()));
 //
 //		BufferedReader iStream = new BufferedReader(new InputStreamReader(proc.getInputStream()));
