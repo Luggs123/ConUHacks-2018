@@ -1,14 +1,16 @@
-import org.json.*;
-
-public class Tone {
-    private String name;
-    private String id;
-    private float score;
-
-    public Tone(JSONObject obj) {
-        obj.getString("tone_name");
-        obj.getString("tone_id");
-        obj.getFloat("score");
+import javafx.scene.paint.Color;
+public enum Tone {
+    None,
+    Anger,
+    Fear,
+    Joy,
+    Sadness,
+    Analytical,
+    Confident,
+    Tentative;
+    
+    // TODO:
+    public static Color getToneColor(Tone tone, int instance) {
+        return null;
     }
-
 }

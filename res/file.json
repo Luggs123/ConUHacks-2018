@@ -1,0 +1,110 @@
+{
+  "document_tone": {
+    "tones": [
+      {
+        "tone_name": "Joy", 
+        "score": 0.520536, 
+        "tone_id": "joy"
+      }, 
+      {
+        "tone_name": "Analytical", 
+        "score": 0.907852, 
+        "tone_id": "analytical"
+      }
+    ]
+  }, 
+  "sentences_tone": [
+    {
+      "text": "Untethered small-scale (from several millimetres down to a few micrometres in all dimensions) robots that can non-invasively access confined, enclosed spaces may enable applications in microfactories such as the construction of tissue scaffolds by robotic assembly1, in bioengineering such as single-cell manipulation and biosensing2, and in healthcare3,4,5,6 such as targeted drug delivery4 and minimally invasive surgery3,5.", 
+      "sentence_id": 0, 
+      "tones": [
+        {
+          "tone_name": "Analytical", 
+          "score": 0.918198, 
+          "tone_id": "analytical"
+        }
+      ]
+    }, 
+    {
+      "text": "Existing small-scale robots, however, have very limited mobility because they are unable to negotiate obstacles and changes in texture or material in unstructured environments7,8,9,10,11,12,13.", 
+      "sentence_id": 1, 
+      "tones": [
+        {
+          "tone_name": "Analytical", 
+          "score": 0.579367, 
+          "tone_id": "analytical"
+        }
+      ]
+    }, 
+    {
+      "text": "Of these small-scale robots, soft robots have greater potential to realize high mobility via multimodal locomotion, because such machines have higher degrees of freedom than their rigid counterparts14,15,16.", 
+      "sentence_id": 2, 
+      "tones": [
+        {
+          "tone_name": "Joy", 
+          "score": 0.610234, 
+          "tone_id": "joy"
+        }, 
+        {
+          "tone_name": "Analytical", 
+          "score": 0.579367, 
+          "tone_id": "analytical"
+        }
+      ]
+    }, 
+    {
+      "text": "Here we demonstrate magneto-elastic soft millimetre-scale robots that can swim inside and on the surface of liquids, climb liquid menisci, roll and walk on solid surfaces, jump over obstacles, and crawl within narrow tunnels.", 
+      "sentence_id": 3, 
+      "tones": []
+    }, 
+    {
+      "text": "These robots can transit reversibly between different liquid and solid terrains, as well as switch between locomotive modes.", 
+      "sentence_id": 4, 
+      "tones": [
+        {
+          "tone_name": "Analytical", 
+          "score": 0.698634, 
+          "tone_id": "analytical"
+        }
+      ]
+    }, 
+    {
+      "text": "They can additionally execute pick-and-place and cargo-release tasks.", 
+      "sentence_id": 5, 
+      "tones": [
+        {
+          "tone_name": "Analytical", 
+          "score": 0.825947, 
+          "tone_id": "analytical"
+        }
+      ]
+    }, 
+    {
+      "text": "We also present theoretical models to explain how the robots move.", 
+      "sentence_id": 6, 
+      "tones": [
+        {
+          "tone_name": "Analytical", 
+          "score": 0.653099, 
+          "tone_id": "analytical"
+        }
+      ]
+    }, 
+    {
+      "text": "Like the large-scale robots that can be used to study locomotion17, these soft small-scale robots could be used to study soft-bodied locomotion produced by small organisms.", 
+      "sentence_id": 7, 
+      "tones": [
+        {
+          "tone_name": "Tentative", 
+          "score": 0.57374, 
+          "tone_id": "tentative"
+        }, 
+        {
+          "tone_name": "Analytical", 
+          "score": 0.589295, 
+          "tone_id": "analytical"
+        }
+      ]
+    }
+  ]
+}

@@ -80,6 +80,5 @@ public class Main extends Application {
 		controller.setStage(primaryStage);
 
 		primaryStage.show();
-
 	}
 }
