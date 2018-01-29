@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
@@ -189,8 +190,10 @@ public class MainViewController {
 		Popup popup = new Popup();
 		Label popupText = new Label();
 		popup.getContent().add(popupText);
+		popupText.setPadding(new Insets(0, 10, 0, 10));
 
-		popupText.setStyle("-fx-background-color: white;");
+		popupText.setStyle("-fx-background-color: white;" +
+				"-fx-border-color: grey");
 
 		textArea.setMouseOverTextDelay(java.time.Duration.ofMillis(700));
 		textArea.addEventHandler(MouseOverTextEvent.MOUSE_OVER_TEXT_BEGIN, e -> {
