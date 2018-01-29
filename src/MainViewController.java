@@ -9,7 +9,6 @@ import javafx.geometry.Bounds;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
@@ -64,7 +63,7 @@ public class MainViewController {
 		textArea.prefWidth(450);
 		textArea.setWrapText(true);
 		
-		VirtualizedScrollPane scroll = new VirtualizedScrollPane(textArea);
+		VirtualizedScrollPane<StyleClassedTextArea> scroll = new VirtualizedScrollPane<StyleClassedTextArea>(textArea);
 		textPane.add(scroll, 0, 1);
 
 

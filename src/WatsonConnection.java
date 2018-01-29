@@ -1,13 +1,10 @@
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.ToneAnalyzer;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneAnalysis;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneInput;
 import com.ibm.watson.developer_cloud.tone_analyzer.v3.model.ToneOptions;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 

@@ -2,8 +2,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import javafx.scene.shape.Rectangle;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
